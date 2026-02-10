@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { recordHundredMeter, getHundredMeterRecordsByUserId, editHundredMeter, deleteHundredMeter } from "../controllers/hundredMeterController.js";
+import { recordHundredMeter, getHundredMeterRecords, editHundredMeter, deleteHundredMeter } from "../controllers/hundredMeterController.js";
 import { authMiddleware } from "../utils/auth.js";
 const hundredMeterRouter = Router();
 hundredMeterRouter.use(authMiddleware);
 
 hundredMeterRouter.get('/', (req, res) => {
-    getHundredMeterRecordsByUserId(req, res);
+    getHundredMeterRecords(req, res);
 });
 
 hundredMeterRouter.post('/record', (req, res) => {

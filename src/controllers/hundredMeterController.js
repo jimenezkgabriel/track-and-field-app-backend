@@ -1,6 +1,6 @@
 import HundredMeter from "../models/HundredMeter.js";
 
-export const getHundredMeterRecordsByUserId = async (req, res) => {
+export const getHundredMeterRecords = async (req, res) => {
     try {
         console.log("This is req.user:", req.user);
         const records = await HundredMeter.find({ user: req.user._id }).sort({ createdAt: -1 });
