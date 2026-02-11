@@ -1,11 +1,27 @@
-import {  Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
 
 const userSchema = new Schema({
-    username: { type: String, required: true, trim: true },
-    email: { type: String, required: true, unique: true,  match: [/.+@.+\..+/, "Must match an email address!"], trim: true },
-    password: { type: String, required: true },
-    eventsInvolved: { type: [String], default: [] },
+    username: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: [/.+@.+\..+/, "Must match an email address!"],
+        trim: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    eventsInvolved: {
+        type: [String],
+        default: []
+    },
 });
 
 userSchema.pre('save', async function () {

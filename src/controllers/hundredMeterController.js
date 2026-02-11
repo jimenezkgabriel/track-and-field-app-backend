@@ -2,9 +2,9 @@ import HundredMeter from "../models/HundredMeter.js";
 
 export const getHundredMeterRecords = async (req, res) => {
     try {
-        console.log("This is req.user:", req.user);
-        const records = await HundredMeter.find({ user: req.user._id }).sort({ createdAt: -1 });
-        console.log("Fetched 100 Meter records:", records);
+        const records = await HundredMeter.find({ user: req.user._id })
+            .sort({ createdAt: -1 })
+            .lean();
         res.status(200).json(records);
     } catch (error) {
         console.error("Error fetching 100 Meter records:", error);
@@ -14,14 +14,12 @@ export const getHundredMeterRecords = async (req, res) => {
 
 export const recordHundredMeter = async (req, res) => {
     try {
-        console.log("Request body:", req.body);
         const { sprintTime, description } = req.body;
-        const newHundredMeter = new HundredMeter({
-            sprintTime: sprintTime,
-            description: description,
+        const newHundredMeter = await HundredMeter.create({
+            sprintTime,
+            description,
             user: req.user._id
         });
-        await newHundredMeter.save();
         res.status(201).json({ message: "100 Meter record created successfully", record: newHundredMeter });
     } catch (error) {
         console.error("Error recording 100 Meter time:", error);
@@ -48,7 +46,7 @@ export const editHundredMeter = async (req, res) => {
         const updatedRecord = await HundredMeter.findByIdAndUpdate(
             id,
             { sprintTime, description },
-            { new: true }
+            { new: true, runValidators: true }
         );
         res.status(200).json({ message: "100 Meter record updated successfully", record: updatedRecord });
     } catch (error) {
