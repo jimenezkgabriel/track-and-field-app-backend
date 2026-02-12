@@ -20,9 +20,9 @@ const userSchema = new Schema({
     },
     eventsInvolved: {
         type: [String],
-        default: []
-    },
-});
+        default: ['100m', 'long jump']
+    }
+}, { timestamps: true });
 
 userSchema.pre('save', async function () {
     if (this.isNew || this.isModified('password')) {

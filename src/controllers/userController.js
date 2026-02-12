@@ -26,12 +26,12 @@ export const loginUser = async (req, res) => {
 
         // Use generic message to prevent user enumeration
         if (!user) {
-            return res.status(401).json({ message: "Invalid credentials" });
+            return res.status(401).json({ message: "Invalid email or password!" });
         }
         
         const isPasswordValid = await user.isCorrectPassword(password);
         if (!isPasswordValid) {
-            return res.status(401).json({ message: "Invalid credentials" });
+            return res.status(401).json({ message: "Invalid email or password!" });
         }
         
         const token = signToken(user);
