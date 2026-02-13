@@ -2,10 +2,10 @@ import { Schema, model } from "mongoose";
 
 const javelinTossSchema = new Schema(
     {
-        tossDistance: {
+        record: {
             type: Number,
             required: true,
-            trim: true
+            min: [0, 'Toss distance must be a non-negative number']
         },
         description: {
             type: String

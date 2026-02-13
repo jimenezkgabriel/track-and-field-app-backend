@@ -2,10 +2,10 @@ import { Schema, model } from "mongoose";
 
 const longJumpSchema = new Schema(
     {
-        jumpDistance: {
+        record: {
             type: Number,
             required: true,
-            trim: true
+            min: [0, 'Jump distance must be a non-negative number']
         },
         description: {
             type: String

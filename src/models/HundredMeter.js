@@ -1,10 +1,10 @@
 import { Schema, model } from "mongoose";
 const hundredMeterSchema = new Schema(
     {
-        sprintTime: {
+        record: {
             type: Number,
             required: true,
-            trim: true
+            min: [0, 'Sprint time must be a non-negative number']
         },
         description: {
             type: String

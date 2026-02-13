@@ -11,8 +11,11 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:bcrypt@6",
         "npm:dotenv@^17.2.4",
         "npm:express@^5.2.1",
+        "npm:jsonwebtoken@^9.0.3",
+        "npm:mongoose@^9.1.6",
         "npm:serverless-http@4"
       ]
     }
