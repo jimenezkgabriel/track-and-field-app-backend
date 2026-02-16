@@ -41,3 +41,21 @@ export const loginUser = async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 };
+
+export const editUserEvents = async (req, res) => {
+    try {
+        const { eventsInvolved } = req.body;
+        console.log("request body:", req.body);
+        console.log("eventsInvolved:", eventsInvolved);
+        console.log("user ID from token:", req.user._id);
+        const updatedUser = await User.findByIdAndUpdate(
+            req.user._id,
+            { eventsInvolved },
+            { new: true, runValidators: true }
+        );
+        res.status(200).json({ message: "User events updated successfully", user: updatedUser });
+    } catch (error) {
+        console.error("Error updating user events:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};

@@ -1,5 +1,6 @@
 import express from 'express';
-import { createUser, loginUser } from '../controllers/userController.js';
+import { createUser, editUserEvents, loginUser } from '../controllers/userController.js';
+import { authMiddleware } from '../utils/auth.js';
 
 const userRouter = express.Router();
 
@@ -13,6 +14,10 @@ userRouter.post('/register', (req, res) => {
 
 userRouter.post('/login', (req, res) => {
     loginUser(req, res);
+});
+
+userRouter.put('/events', authMiddleware, (req, res) => {
+    editUserEvents(req, res);
 });
 
 export default userRouter;
