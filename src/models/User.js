@@ -20,7 +20,7 @@ const userSchema = new Schema({
     },
     eventsInvolved: {
         type: [String],
-        default: ['100m', 'long jump']
+        default: []
     }
 }, { timestamps: true });
 
